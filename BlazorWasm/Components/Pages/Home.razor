@@ -1,0 +1,24 @@
+﻿@page "/"
+@using BlazorServer.Components.Pages
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<EditForm OnSubmit="Callback2" Model="Person">
+    
+    <FluentDatePicker @rendermode="InteractiveWebAssembly" Name="Person.Birthday" @bind-Value="@Person.Birthday" ></FluentDatePicker>
+    <input type="submit" value="OK" />
+</EditForm>
+
+@code
+{
+  
+    [SupplyParameterFromForm]public Person Person { get; set; } = new Person();
+
+    private void Callback2(EditContext obj)
+    {
+        Console.WriteLine("wurde submittet!");
+        Console.WriteLine(Person.Birthday);
+    }
+}
